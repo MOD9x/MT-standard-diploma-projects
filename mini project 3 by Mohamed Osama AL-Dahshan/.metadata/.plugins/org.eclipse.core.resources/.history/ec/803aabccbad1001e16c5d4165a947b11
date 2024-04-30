@@ -1,0 +1,33 @@
+/*
+ * MiniProject3.c
+ *
+ *  Created on: Feb 22, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "DcMotor.h"
+#include"PWM.h"
+#include<avr/io.h>
+
+
+
+int main()
+{
+	char i;
+	 DcMotor_Init();
+	 DcMotor_Rotate( DC_MOTOR_CW , 75);
+	 _delay_ms(200);
+
+	 while(1)
+	 {
+
+		 for(i=0 ; i<=100;i++)
+		 {
+			 DcMotor_Rotate( DC_MOTOR_CW , i);
+			 _delay_ms(20);
+
+		 }
+
+	 }
+}

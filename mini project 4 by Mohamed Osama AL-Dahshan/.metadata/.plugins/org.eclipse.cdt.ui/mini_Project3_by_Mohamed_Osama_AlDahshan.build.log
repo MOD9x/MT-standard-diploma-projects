@@ -1,0 +1,34 @@
+11:49:19 **** Incremental Build of configuration Debug for project mini_Project3_by_Mohamed_Osama_AlDahshan ****
+make all 
+Building file: ../MiniProject3.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"MiniProject3.d" -MT"MiniProject3.o" -c -o "MiniProject3.o" "../MiniProject3.c"
+Finished building: ../MiniProject3.c
+ 
+Building target: mini_Project3_by_Mohamed_Osama_AlDahshan.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,mini_Project3_by_Mohamed_Osama_AlDahshan.map -mmcu=atmega32 -o "mini_Project3_by_Mohamed_Osama_AlDahshan.elf"  ./ADC.o ./DcMotor.o ./LM35.o ./MiniProject3.o ./PWM.o ./gpio.o ./lcd.o   
+Finished building target: mini_Project3_by_Mohamed_Osama_AlDahshan.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S mini_Project3_by_Mohamed_Osama_AlDahshan.elf  >"mini_Project3_by_Mohamed_Osama_AlDahshan.lss"
+Finished building: mini_Project3_by_Mohamed_Osama_AlDahshan.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 mini_Project3_by_Mohamed_Osama_AlDahshan.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:   10780 bytes (32.9% Full)
+(.text + .data + .bootloader)
+
+Data:        298 bytes (14.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+11:49:19 Build Finished. 0 errors, 0 warnings. (took 770ms)
+

@@ -1,0 +1,35 @@
+11:59:34 **** Incremental Build of configuration Debug for project ffd ****
+make all 
+Building file: ../gf.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gf.d" -MT"gf.o" -c -o "gf.o" "../gf.c"
+Finished building: ../gf.c
+ 
+Building target: ffd.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,ffd.map -mmcu=atmega16 -o "ffd.elf"  ./gf.o   
+Finished building target: ffd.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S ffd.elf  >"ffd.lss"
+Finished building: ffd.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex ffd.elf  "ffd.hex"
+Finished building: ffd.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 ffd.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:     212 bytes (1.3% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

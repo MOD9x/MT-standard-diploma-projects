@@ -1,0 +1,99 @@
+/*
+ * MiniProject3.c
+ *
+ *  Created on: Feb 22, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "lcd.h"
+#include "DcMotor.h"
+#include"PWM.h"
+#include "adc.h"
+#include "LM35.h"
+#include<util/delay.h>
+
+
+
+int main()
+{
+	char i=0 , Temperature=0 ;
+
+	ADC_ConfigType ConfigType ={AREF_ADC,ADC_F8};
+
+
+	 DcMotor_Init(); /* initialize DC Motor driver */
+
+	 LCD_init(); /* initialize LCD driver */
+
+		ADC_init(&ConfigType); /* initialize ADC driver */
+
+
+	  LCD_displayStringRowColumn( 0 , 4 ,"FAN is OFF");
+
+	  LCD_displayStringRowColumn( 1 , 4 ,"Temp = ");
+
+	  LCD_intgerToString(Temperature);
+
+	  LCD_displayString("  C");
+
+
+	 DcMotor_Rotate( DC_MOTOR_CW , 75);
+	 _delay_ms(1000);
+	 Temperature=27;
+
+	 while(1)
+	 {
+		 Temperature = LM35_GetTemperature();
+
+		 if( Temperature<30 )
+		 {
+			 DcMotor_Rotate( DC_MOTOR_STOP , 0 );
+			 LCD_displayStringRowColumn( 0 , 4 ,"FAN is OFF");
+			 LCD_intgerToStringRowColumn(1,11,Temperature);
+
+		 }
+
+		 else if( Temperature >= 30 && Temperature < 60)
+		  {
+		 	 DcMotor_Rotate( DC_MOTOR_CW , 25 );
+		 	 LCD_displayStringRowColumn( 0 , 4 ,"FAN is ON");
+		 	 LCD_intgerToStringRowColumn(1,11,Temperature);
+		  }
+
+		 else if( Temperature >= 60 && Temperature < 90)
+		  {
+		 	 DcMotor_Rotate( DC_MOTOR_CW , 50 );
+		 	 LCD_displayStringRowColumn( 0 , 4 ,"FAN is ON ");
+		 	 LCD_intgerToStringRowColumn(1,11,Temperature);
+		  }
+
+		 else if( Temperature >= 90 && Temperature < 120)
+		  {
+		 	 DcMotor_Rotate( DC_MOTOR_CW , 75 );
+		 	 LCD_displayStringRowColumn( 0 , 4 ,"FAN is ON ");
+		 	 LCD_intgerToStringRowColumn(1,11,Temperature);
+		  }
+
+		 else if( Temperature >= 120 )
+		  {
+		 	 DcMotor_Rotate( DC_MOTOR_CW , 100 );
+		 	 LCD_displayStringRowColumn( 0 , 4 ,"FAN is ON ");
+		 	 LCD_intgerToStringRowColumn(1,11,Temperature);
+		  }
+
+		 _delay_ms(1000);
+			 Temperature=120;
+
+
+
+
+		/* for(i=0 ; i<=100;i++)
+		 {
+			 DcMotor_Rotate( DC_MOTOR_CW , i);
+			 _delay_ms(20);
+
+		 }*/
+
+	 }
+}

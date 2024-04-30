@@ -1,0 +1,36 @@
+06:04:10 **** Incremental Build of configuration Debug for project ex3_MC2_string_LCD ****
+make all 
+Building file: ../ex3_mc2.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"ex3_mc2.d" -MT"ex3_mc2.o" -c -o "ex3_mc2.o" "../ex3_mc2.c"
+../ex3_mc2.c: In function 'main':
+../ex3_mc2.c:35: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+Finished building: ../ex3_mc2.c
+ 
+Building target: ex3_MC2_string_LCD.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,ex3_MC2_string_LCD.map -mmcu=atmega32 -o "ex3_MC2_string_LCD.elf"  ./LCD.o ./UART.o ./ex3_mc2.o ./gpio.o   
+Finished building target: ex3_MC2_string_LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S ex3_MC2_string_LCD.elf  >"ex3_MC2_string_LCD.lss"
+Finished building: ex3_MC2_string_LCD.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 ex3_MC2_string_LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    9376 bytes (28.6% Full)
+(.text + .data + .bootloader)
+
+Data:         18 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+06:04:10 Build Finished. 0 errors, 1 warnings. (took 496ms)
+

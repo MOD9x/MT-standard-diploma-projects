@@ -1,0 +1,60 @@
+04:49:18 **** Build of configuration Debug for project ex3_LCD_Master ****
+make all 
+Building file: ../EEPROM.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"EEPROM.d" -MT"EEPROM.o" -c -o "EEPROM.o" "../EEPROM.c"
+Finished building: ../EEPROM.c
+ 
+Building file: ../I2C.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"I2C.d" -MT"I2C.o" -c -o "I2C.o" "../I2C.c"
+Finished building: ../I2C.c
+ 
+Building file: ../UART.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"UART.d" -MT"UART.o" -c -o "UART.o" "../UART.c"
+Finished building: ../UART.c
+ 
+Building file: ../ex.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"ex.d" -MT"ex.o" -c -o "ex.o" "../ex.c"
+In file included from ../ex.c:9:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../ex.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+../gpio.c: In function 'GPIO_readPin':
+../gpio.c:203: warning: control reaches end of non-void function
+../gpio.c: In function 'GPIO_readPort':
+../gpio.c:308: warning: control reaches end of non-void function
+Finished building: ../gpio.c
+ 
+Building target: ex3_LCD_Master.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,ex3_LCD_Master.map -mmcu=atmega32 -o "ex3_LCD_Master.elf"  ./EEPROM.o ./I2C.o ./UART.o ./ex.o ./gpio.o   
+Finished building target: ex3_LCD_Master.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S ex3_LCD_Master.elf  >"ex3_LCD_Master.lss"
+Finished building: ex3_LCD_Master.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 ex3_LCD_Master.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    6864 bytes (20.9% Full)
+(.text + .data + .bootloader)
+
+Data:         50 bytes (2.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+04:49:19 Build Finished. 0 errors, 3 warnings. (took 914ms)
+

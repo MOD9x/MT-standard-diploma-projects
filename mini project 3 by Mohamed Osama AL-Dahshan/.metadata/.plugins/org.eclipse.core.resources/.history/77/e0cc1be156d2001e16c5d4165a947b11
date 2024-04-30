@@ -1,0 +1,28 @@
+/*
+ * ex2.c
+ *
+ *  Created on: Feb 23, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "uart.h"
+#include "avr/io.h"
+#include "keypad.h"
+#include "std_types.h"
+#include "common_macros.h"
+
+
+int main()
+{
+	uint8 Key_NUM;
+
+	Key_NUM=KEYPAD_getPressedKey();
+	UART_init(9600);
+	UART_sendByte(Key_NUM);
+
+	while(1)
+	{
+
+	}
+}

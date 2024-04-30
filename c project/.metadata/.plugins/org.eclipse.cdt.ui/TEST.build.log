@@ -1,0 +1,10 @@
+22:45:11 **** Incremental Build of configuration Debug for project TEST ****
+make all 
+Building target: TEST.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,TEST.map -mmcu=atmega16 -o "TEST.elf"  ./TEXT.o   
+make: *** [TEST.elf] Error -1073741502
+"make all" terminated with exit code 2. Build might be incomplete.
+
+22:45:13 Build Failed. 1 errors, 0 warnings. (took 1s.968ms)
+

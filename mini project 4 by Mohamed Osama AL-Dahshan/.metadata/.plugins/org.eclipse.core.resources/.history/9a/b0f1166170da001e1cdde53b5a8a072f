@@ -1,0 +1,50 @@
+/*
+ * Mini_Project4.c
+ *
+ *  Created on: Mar 4, 2024
+ *      Author: mod_n
+ */
+
+#include"LCD.h"
+
+#include "gpio.h"
+
+#include"Ultrasonic.h"
+
+#include<avr/io.h>
+
+#include <util/delay.h>
+
+
+
+int main()
+{
+	uint16 totalDistance=0;
+
+	Ultrasonic_init();
+
+	LCD_init();
+
+	SREG |= (1<<7);
+
+	LCD_displayString("Distance =    cm");
+
+	while(1)
+	{
+		totalDistance = Ultrasonic_readDistance()+1;
+
+
+		LCD_intgerToStringRowColumn(0,11,totalDistance);
+
+		if( totalDistance <100)
+		{
+			LCD_displayCharacterRowColumn(0,13,' ');
+		}
+
+		if( totalDistance <10)
+		{
+			LCD_displayCharacterRowColumn(0,12,' ');
+		}
+
+	}
+}

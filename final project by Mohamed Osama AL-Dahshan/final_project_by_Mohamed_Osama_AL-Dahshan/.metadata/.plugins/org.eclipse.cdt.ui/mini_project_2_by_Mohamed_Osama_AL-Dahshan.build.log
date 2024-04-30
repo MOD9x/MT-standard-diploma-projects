@@ -1,0 +1,20 @@
+09:58:07 **** Incremental Build of configuration Debug for project mini_project_2_by_Mohamed_Osama_AL-Dahshan ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 mini_project_2_by_Mohamed_Osama_AL-Dahshan.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:   10496 bytes (32.0% Full)
+(.text + .data + .bootloader)
+
+Data:         25 bytes (1.2% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+09:58:07 Build Finished. 0 errors, 0 warnings. (took 147ms)
+

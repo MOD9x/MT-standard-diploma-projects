@@ -1,0 +1,108 @@
+/*
+ * Ultrasonic.c
+ *
+ *  Created on: Mar 4, 2024
+ *      Author: mod_n
+ */
+
+#include"ICU.h"
+
+#include "gpio.h"
+
+#include"Ultrasonic.h"
+
+#include <util/delay.h>
+
+#include<avr/io.h>
+
+uint16 g_highTime=0 , g_edgeCounts=0 , flag=0;
+
+/*
+ * Description :
+ * Initialize the Ultrasonic:
+ * 1. Setup the Ultrasonic trigger pin directions by use the GPIO driver.
+ * 2. Setup the ICU initialization .
+ * 3. Setup the Call back of the ICU
+ */
+void Ultrasonic_init(void)
+{
+	ICU_Configurations ICU_Configs = { RISING_EDGE , F_CPU_8};
+
+	GPIO_setupPinDirection(Ultrasonic_TRIGGER_PORT_ID , Ultrasonic_TRIGGER_PIN_ID , PIN_OUTPUT);
+	/*	Configure PD5 as o/p pin which is ( trigger pin )*/
+
+	ICU_Init(&ICU_Configs);
+	/*	ICU initialization call with sending all Configurations by address */
+
+	ICU_setCallBack(Ultrasonic_edgeProcessing);
+	/*	Call back setup of ICU */
+
+}
+
+/*
+ * Description :
+ * Send the required trigger pulse to the ultrasonic
+ */
+void Ultrasonic_Trigger(void)
+{
+	GPIO_writePin(Ultrasonic_TRIGGER_PORT_ID , Ultrasonic_TRIGGER_PIN_ID , LOGIC_HIGH);
+	_delay_ms(15);
+	GPIO_writePin(Ultrasonic_TRIGGER_PORT_ID , Ultrasonic_TRIGGER_PIN_ID , LOGIC_LOW);
+}
+
+/*
+ * Description :
+ * Send the required trigger pulse to the ultrasonic
+ */
+uint16 Ultrasonic_readDistance(void)
+{
+	g_highTime=0;
+	g_edgeCounts=0;
+	/*	reset the number of edges and the pulse time */
+
+	GPIO_setupPinDirection(PORTB_ID , PIN7_ID , PIN_OUTPUT);
+
+
+
+	Ultrasonic_Trigger();
+	/*	Send the required trigger pulse to the ultrasonic*/
+
+	while( flag != 1){	}
+	flag=0;
+
+	return ( (340/2) * g_highTime );
+
+}
+
+/*
+ * Description :
+ * Send the required trigger pulse to the ultrasonic
+ */
+void Ultrasonic_edgeProcessing(void)
+{
+	g_edgeCounts++;
+	GPIO_writePin(PORTB_ID , PIN7_ID , LOGIC_HIGH);
+
+	if( g_edgeCounts == 1)
+	{
+		ICU_ClearTimerValue();
+		/*		clearing the timer register to get accurate value 		*/
+
+		ICU_setEdgeDetectionType(FALLING_EDGE);
+	}
+
+	else if( g_edgeCounts == 2)
+	{
+		g_highTime = ICU_ReadValue();
+		/*		saving the capture value which is the pulse time 		*/
+
+		flag=1;
+
+		ICU_ClearTimerValue();
+
+		ICU_setEdgeDetectionType(RISING_EDGE);
+
+
+	}
+
+}

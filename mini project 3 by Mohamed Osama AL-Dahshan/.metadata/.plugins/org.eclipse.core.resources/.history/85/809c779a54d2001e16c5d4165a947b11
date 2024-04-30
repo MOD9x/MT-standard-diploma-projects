@@ -1,0 +1,20 @@
+/*
+ * ex2.c
+ *
+ *  Created on: Feb 23, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "uart.h"
+#include "avr/io.h"
+#include "keypad.h"
+#include "std_types.h"
+#include "common_macros.h"
+
+
+int main()
+{
+	uint8
+	KEYPAD_getPressedKey();
+}

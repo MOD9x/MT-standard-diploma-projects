@@ -1,0 +1,151 @@
+/*
+ * project.c
+ *
+ *  Created on: Dec 25, 2023
+ *      Author: mod_n
+ */
+
+
+#include<stdio.h>
+
+enum{OFF,ON
+};
+
+typedef struct {
+	unsigned short room_temp;
+	unsigned short engine_temp;
+	unsigned short vehicle_speed;
+	char engine_controller;
+	char AC;
+}vehicle_sensors;// all sensors needed to control the vehicle
+
+void Sensors_set_menu();
+
+void status_disply(unsigned short room_temp,unsigned short enigne_temp,unsigned short vehicle_speed,char engine_controller,char AC){
+	printf("Engine is ON\n");
+
+	if(AC==OFF)
+		printf("AC is OFF\n");
+	else
+		printf("AC is ON\n");
+
+	printf("vehicle speed = %d\n",vehicle_speed);
+
+	printf("Room tempereture = %d\n",room_temp);
+
+	if(engine_controller==OFF)
+		printf("Engine tempreture controller is OFF\n");
+		else
+		printf("Engine tempreture controller is ON\n");
+
+	printf("Engine tempreture = %d\n\n",enigne_temp);
+
+	Sensors_set_menu();
+}
+
+void System_specs(vehicle_sensors * sensors){
+
+
+
+	status_disply(sensors->room_temp,sensors->engine_temp,sensors->vehicle_speed,sensors->engine_controller,sensors->AC);
+}
+
+void Room_temp_set_menu(vehicle_sensors * sensors){
+	unsigned short room_temp;
+
+
+	printf("Enter room tempreture \n");
+	scanf(" %s",&sensors->room_temp);
+
+	if(sensors->room_temp < 10 || sensors->room_temp >30){
+		sensors->AC=ON;
+	}
+	System_specs(sensors);
+}
+
+void Traffic_light_set_menu(vehicle_sensors * sensors){
+	char input3;
+
+	while(1){
+		printf("G. green\nO. orange\nR. red\n");
+		scanf(" %c",&input3);
+
+		if(input3=='g' || input3=='G'){ // for  green case
+					sensors->room_temp=35;
+					sensors->engine_temp=90;
+					sensors->vehicle_speed=100;
+
+						}
+
+						if(input3=='o' || input3=='O'){ //for orange case
+							sensors->room_temp=3;
+							sensors->engine_temp=65;
+							sensors->vehicle_speed=30;
+								}
+
+						if(input3=='r' || input3=='R'){ // for red case
+							sensors->room_temp=39;
+							sensors->engine_temp=35;
+							sensors->vehicle_speed=0;
+								}
+		System_specs(sensors);// address of the structure which is the pointer value
+}
+}
+
+void Sensors_set_menu(){
+	char input2;
+	vehicle_sensors sensors;// the structure
+
+	while(1){
+		printf("a. Turn off the engine\nb. Set the traffic light color.\nc. Set the room temperature (Temperature Sensor)\nd. Set the engine temperature (Engine Temperature Sensor)\n");
+		scanf(" %c",&input2);
+
+		if(input2=='a'){
+			printf("Turn off the vehicle engine\n\n");
+			return;
+		}
+
+		if(input2=='b'){
+			printf("Set the traffic light color\n\n");
+			Traffic_light_set_menu(&sensors);
+		}
+
+		if(input2=='c'){
+			printf("Set the room temperature (Temperature Sensor)\n\n");
+			Room_temp_set_menu(&sensors);
+		}
+
+
+	}
+}
+
+void Main_menu(){
+	char input1;
+		while(1){
+			printf(" a. Turn on the vehicle engine\nb. Turn off the vehicle engine\nc. Quit the system\n");
+			scanf(" %c",&input1);
+
+			if(input1=='c'){
+				printf("Quit the system");
+				return;
+			}
+
+			if(input1=='b'){
+				printf("Turn off the vehicle engine\n\n");
+				continue;
+			}
+
+			if(input1=='a'){
+				printf("Turn on the vehicle engine\n\n");
+				Sensors_set_menu();
+			}
+		}
+
+}
+
+int main(void){
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0);
+	Main_menu();
+	return 0;
+}

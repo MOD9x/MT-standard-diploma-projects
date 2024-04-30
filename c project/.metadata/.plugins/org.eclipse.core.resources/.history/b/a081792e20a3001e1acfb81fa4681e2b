@@ -1,0 +1,133 @@
+/*
+ * project.c
+ *
+ *  Created on: Dec 25, 2023
+ *      Author: mod_n
+ */
+
+
+#include<stdio.h>
+
+enum{OFF,ON
+};
+
+char AC=OFF;
+
+void Sensors_set_menu();
+
+void status_print(unsigned short room_temp,unsigned short enigne_temp,unsigned short vehicle_speed,char engine_controller){
+	printf("Engine is ON\n");
+
+	if(AC==OFF)
+		printf("AC is OFF\n");
+	else
+		printf("AC is ON\n");
+
+	printf("vehicle speed = %d\n",vehicle_speed);
+
+	printf("Room tempreture = %d\\n",room_temp);
+
+	if(engine_controller==OFF)
+		printf("Engine tempreture controller is OFF\n");
+		else
+		printf("Engine tempreture controller is ON\n");
+
+	printf("Engine tempreture = %d\\n",enigne_temp);
+
+	Sensors_set_menu();
+}
+
+void System_specs(char input3){
+	unsigned short room_temp,enigne_temp,vehicle_speed;
+	char engine_controller=OFF;
+
+	if(AC==ON){
+}
+	else{
+		if(input3=='g' || input3=='G'){
+			room_temp=35;
+			enigne_temp=90;
+			vehicle_speed=100;
+
+				}
+
+				if(input3=='o' || input3=='O'){
+					room_temp=37;
+					enigne_temp=65;
+					vehicle_speed=30;
+						}
+
+				if(input3=='r' || input3=='R'){
+					room_temp=39;
+					enigne_temp=35;
+					vehicle_speed=0;
+						}
+			}
+	status_print(room_temp,enigne_temp,vehicle_speed,engine_controller);
+}
+
+
+void Traffic_light_set_menu(){
+	char input3;
+
+	while(1){
+		printf("G. green\nO. orange\nR. red\n");
+		scanf(" %c",&input3);
+		if(input3 != 'g' && input3 != 'G' && input3 != 'O' && input3 != 'o' && input3 != 'r' && input3 != 'R')
+			continue;
+		System_specs(input3);
+
+}
+}
+
+void Sensors_set_menu(){
+	char input2;
+
+	while(1){
+		printf("a. Turn off the engine\nb. Set the traffic light color.\nc. Set the room temperature (Temperature Sensor)\nd. Set the engine temperature (Engine Temperature Sensor)\n");
+		scanf(" %c",&input2);
+
+		if(input2=='a'){
+			printf("Turn off the vehicle engine\n\n");
+			return;
+		}
+
+		if(input2=='b'){
+			printf("Set the traffic light color\n\n");
+			Traffic_light_set_menu();
+		}
+
+
+	}
+}
+
+void Main_menu(){
+	char input1;
+		while(1){
+			printf(" a. Turn on the vehicle engine\nb. Turn off the vehicle engine\nc. Quit the system\n");
+			scanf(" %c",&input1);
+
+			if(input1=='c'){
+				printf("Quit the system");
+				return;
+			}
+
+			if(input1=='b'){
+				printf("Turn off the vehicle engine\n\n");
+				continue;
+			}
+
+			if(input1=='a'){
+				printf("Turn on the vehicle engine\n\n");
+				Sensors_set_menu();
+			}
+		}
+
+}
+
+int main(void){
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0);
+	Main_menu();
+	return 0;
+}

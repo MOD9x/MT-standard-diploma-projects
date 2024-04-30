@@ -1,0 +1,52 @@
+/*
+ * MiniProject3.c
+ *
+ *  Created on: Feb 22, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "DcMotor.h"
+#include"PWM.h"
+#include<util/delay.h>
+
+
+
+int main()
+{
+	char i=0 , Temperature=0 ;
+
+	 DcMotor_Init();
+
+	 LCD_init();
+
+	  LCD_displayStringRowColumn( 0 , 4 ,"FAN is OFF");
+
+	  LCD_displayStringRowColumn( 1 , 4 ,"Temp = ");
+
+	  LCD_intgerToString(Temperature);
+
+	  LCD_displayCharacter("C");
+
+
+	 DcMotor_Rotate( DC_MOTOR_CW , 75);
+
+	 while(1)
+	 {
+
+		 if( Temperature<30 )
+		 {
+			 DcMotor_Rotate( DC_MOTOR_STOP , 0 );
+			 LCD_intgerToStringRowColumn(1,7,uint8 col,Temperature);
+
+		 }
+
+		 for(i=0 ; i<=100;i++)
+		 {
+			 DcMotor_Rotate( DC_MOTOR_CW , i);
+			 _delay_ms(20);
+
+		 }
+
+	 }
+}

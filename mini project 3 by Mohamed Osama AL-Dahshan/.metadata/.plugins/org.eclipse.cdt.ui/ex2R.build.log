@@ -1,0 +1,7 @@
+00:08:00 **** Incremental Build of configuration Debug for project ex2R ****
+make all 
+make: *** No rule to make target `ex2r.o', needed by `ex2R.elf'.  Stop.
+"make all" terminated with exit code 2. Build might be incomplete.
+
+00:08:00 Build Failed. 1 errors, 0 warnings. (took 99ms)
+

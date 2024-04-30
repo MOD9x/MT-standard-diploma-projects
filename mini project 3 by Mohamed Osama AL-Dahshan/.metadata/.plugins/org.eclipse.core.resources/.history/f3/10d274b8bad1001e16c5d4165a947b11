@@ -1,0 +1,23 @@
+/*
+ * MiniProject3.c
+ *
+ *  Created on: Feb 22, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "DcMotor.h"
+#include"PWM.h"
+
+
+
+int main()
+{
+	 DcMotor_Init();
+	 DcMotor_Rotate( DC_MOTOR_CW , 75);
+
+	 while(1)
+	 {
+
+	 }
+}

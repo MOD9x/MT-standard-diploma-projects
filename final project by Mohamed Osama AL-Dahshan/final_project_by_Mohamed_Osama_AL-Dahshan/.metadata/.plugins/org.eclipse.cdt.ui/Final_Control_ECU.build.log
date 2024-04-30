@@ -1,0 +1,38 @@
+02:13:14 **** Incremental Build of configuration Debug for project Final_Control_ECU ****
+make all 
+Building file: ../Control.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Control.d" -MT"Control.o" -c -o "Control.o" "../Control.c"
+In file included from ../Control.c:15:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../Control.c: In function 'main':
+../Control.c:137: warning: large integer implicitly truncated to unsigned type
+Finished building: ../Control.c
+ 
+Building target: Final_Control_ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Final_Control_ECU.map -mmcu=atmega32 -o "Final_Control_ECU.elf"  ./BUZZER.o ./Control.o ./DcMotor.o ./EEPROM.o ./I2C.o ./PWM.o ./TIMER1.o ./UART.o ./gpio.o   
+Finished building target: Final_Control_ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Final_Control_ECU.elf  >"Final_Control_ECU.lss"
+Finished building: Final_Control_ECU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Final_Control_ECU.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    9212 bytes (28.1% Full)
+(.text + .data + .bootloader)
+
+Data:        274 bytes (13.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+02:13:18 Build Finished. 0 errors, 2 warnings. (took 3s.602ms)
+

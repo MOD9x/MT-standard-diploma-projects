@@ -1,0 +1,82 @@
+/*
+ * project.c
+ *
+ *  Created on: Dec 25, 2023
+ *      Author: mod_n
+ */
+
+
+#include<stdio.h>
+
+void Traffic_light_set_menu(){
+	char input3;
+
+	while(1){
+		printf("G. green\nO. orange\nR. red\n");
+		scanf(" %c",&input3);
+
+		if(iput3=='g' || input3=='G'){
+
+
+		}
+
+		if(iput3=='o' || input3=='O'){
+
+				}
+
+		if(iput3=='r' || input3=='R'){
+
+				}
+	}
+}
+
+void Sensors_set_menu(){
+	char input2;
+
+	while(1){
+		printf("a. Turn off the engine\nb. Set the traffic light color.\nc. Set the room temperature (Temperature Sensor)\nd. Set the engine temperature (Engine Temperature Sensor)\n");
+		scanf(" %c",&input2);
+
+		if(input2=='a'){
+			printf("Turn off the vehicle engine\n\n");
+			return;
+		}
+
+		if(input2=='b'){
+			printf("Set the traffic light color\n\n");
+			Traffic_light_set_menu();
+		}
+
+
+	}
+}
+
+void Main_menu(){
+	char input1;
+		while(1){
+			printf(" a. Turn on the vehicle engine\nb. Turn off the vehicle engine\nc. Quit the system\n");
+			scanf(" %c",&input1);
+
+			if(input1=='c'){
+				printf("Quit the system");
+				return;
+			}
+
+			if(input1=='b'){
+				printf("Turn off the vehicle engine\n\n");
+				continue;
+			}
+
+			if(input1=='a'){
+				printf("Turn on the vehicle engine\n\n");
+				Sensors_set_menu();
+			}
+		}
+
+}
+
+int main(){
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0);
+	Main_menu();
+}

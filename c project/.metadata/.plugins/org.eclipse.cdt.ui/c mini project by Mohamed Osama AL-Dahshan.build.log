@@ -1,0 +1,7 @@
+21:33:37 **** Rebuild of configuration Debug for project c mini project by Mohamed Osama AL-Dahshan ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o project.o "..\\project.c" 
+gcc -o "c mini project by Mohamed Osama AL-Dahshan.exe" project.o 
+
+21:33:38 Build Finished. 0 errors, 0 warnings. (took 1s.122ms)
+

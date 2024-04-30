@@ -1,0 +1,60 @@
+/*
+ * ex2r.c
+ *
+ *  Created on: Feb 23, 2024
+ *      Author: mod_n
+ */
+
+
+#include "gpio.h"
+#include "uart.h"
+#include "avr/io.h"
+#include "keypad.h"
+#include "std_types.h"
+#include "common_macros.h"
+
+int main()
+{
+	uint8 Led_NUM;
+
+	GPIO_setupPinDirection(PORTC_ID,PIN0_ID,PIN_OUTPUT);
+
+	GPIO_setupPinDirection(PORTC_ID,PIN1_ID,PIN_OUTPUT);
+
+	GPIO_setupPinDirection(PORTC_ID,PIN2_ID,PIN_OUTPUT);
+
+
+	UART_init(9600);
+
+	Led_NUM=UART_recieveByte();
+
+	while(1)
+	{
+		Led_NUM=UART_recieveByte();
+
+		switch( Led_NUM )
+		{
+		case 1:
+			GPIO_writePin(PORTC_ID,PIN2_ID,LOGIC_LOW);
+			GPIO_writePin(PORTC_ID,PIN1_ID,LOGIC_LOW);
+			GPIO_writePin(PORTC_ID,PIN0_ID,LOGIC_HIGH);
+
+			break;
+
+		case 2:
+			GPIO_writePin(PORTC_ID,PIN2_ID,LOGIC_LOW);
+			GPIO_writePin(PORTC_ID,PIN1_ID,LOGIC_HIGH);
+			GPIO_writePin(PORTC_ID,PIN0_ID,LOGIC_LOW);
+
+			break;
+
+		case 3:
+			GPIO_writePin(PORTC_ID,PIN2_ID,LOGIC_HIGH);
+			GPIO_writePin(PORTC_ID,PIN1_ID,LOGIC_LOW);
+			GPIO_writePin(PORTC_ID,PIN0_ID,LOGIC_LOW);
+
+			break;
+
+		}
+	}
+}

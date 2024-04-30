@@ -1,0 +1,17 @@
+/*
+ * DcMotor.c
+ *
+ *  Created on: Feb 22, 2024
+ *      Author: mod_n
+ */
+
+#include "gpio.h"
+#include "common_macros.h"
+
+
+
+void DcMotor_Init(void)
+{
+	GPIO_setupPinDirection(PORTB_ID,PIN0_ID, INPUT_PIN);
+	GPIO_setupPinDirection(uint8 port_num, uint8 pin_num, GPIO_PinDirectionType direction);
+}
